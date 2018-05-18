@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Quest</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="hotpink-4">
+  <div id="navbar">
+   <nav>
+    <div class="nav-wrapper "style="background-color: #fa8072">
+      <a style="margin-left:50px "href="/" class="brand-logo"><img src="<%= asset_path ("DQ.logo_final.png") %>" style ="height:50px; padding-top:10px; padding-left:15px; " ></a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down" style="margin-left:50px; margin-right: 50px; font-style: italic;">
+        <% if @user_role.has_role? :admin %> 
+          <li><a href = "/admin">ADMIN PAGE</a></li>
+        <% end %>
+        <li><a href="/posts?status=전체">COMMUNITY</a></li>
+        <% if @user_role.status == true %>
+          <li><a href="/makeQuest_quest">MY QUEST</a></li>
+        <% else %>
+          <li><a href="/makeQuest_new">MAKE QUEST</a></li>
+        <% end %>
+        <% if user_signed_in? %>
+        <li><a href="/my_page?theme=전체"><%= current_user.nickname%> </a></li>
+        <li><a href="/users/sign_out" data-method="delete" onclick="Materialize.toast('로그아웃되었습니다.', 4000)">logout</a></li>
+        <% else %>
+        <li><a href="/users/sign_in">login</a></li>
+        <% end %>
+          
+        
+      </ul>
+      <ul class="side-nav" id="mobile-demo">
+         <li><a href="/makeQuest_success">makeQuest_success</a></li>
+        <li><a href="/makeQuest_quest">makeQuest_quest</a></li>
+        <li><a href="/makeQuest_new">makeQuest_new</a></li>
+        <li><a href="/login_design">login</a></li>
+      </ul>
+    </div>
+  </nav>
+  </div>
+<%= yield %>
+
+
+        <!--<footer class="page-footer grey darken-3">-->
+        <!--  <div class="container">-->
+        <!--    <div class="row">-->
+        <!--      <div class="col l6 s12">-->
+        <!--        <h5 class="white-text">Team. "난 4번"</h5></h5>-->
+        <!--        <p class="grey-text text-lighten-4">이 서비스는 ‘멋쟁이사자처럼’ 해커톤의 프로젝트를 위해 제작되었습니다. 이 서비스를 통해 사람들의 지루한 생활에 변화를 가져와 삶의 만족도를 높이고, 보람찬 생활을 하는 것을 목표로 만들었습니다. 홈페이지에서 제공하는 퀘스트를 수행함으로써 생길수 있는 건강한 신체, 넓은 인맥, 깊은 인간관계에 대해 우리 팀은 책임지지 않습니다. </p>-->
+        <!--      </div>-->
+        <!--      <div class="col l4 offset-l2 s12">-->
+        <!--        <h5 class="white-text">개발진</h5>-->
+        <!--        <ul>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">안민준</a>    내년에 군대 잘 갔다와~</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">박희융</a>    사실상 우리팀 먹여살림 프론트bb</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">김민정</a>    술이 들어간다 쭉쭉쭉~</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">기재민</a>    우리팀의 정신적 지주(고령자)</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">최희재</a>    우리팀 주당 아무도 못이겨</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">신혜지</a>    얼굴 보고싶어요...</li>-->
+        <!--          <li><a class="grey-text text-lighten-3" href="#!">이광빈</a>    파업 안돼요 캐리해야지</li>-->
+        <!--        </ul>-->
+        <!--      </div>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--  <div class="footer-copyright">-->
+        <!--    <div class="container">-->
+        <!--    © 2017 Copyright Text-->
+        <!--    <a class="grey-text text-lighten-4 right" href="/credit">More Links</a>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--</footer>-->
+</body>
+</html>

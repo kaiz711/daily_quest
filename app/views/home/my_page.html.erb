@@ -1,0 +1,152 @@
+    <!--여기서 프로필 상위부문-->
+    <style>
+    IMG.displayed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: center;
+    }
+      /* label focus color */
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+    
+    </style>
+    
+      <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
+      <%show_success =   @userquest_profile_success_size%>
+      <%show_fail =  @userquest_profile_fail_size %>
+      <%show_category = @theme%>
+      <%show_point = "3700"%>
+    
+<div class="container">
+    <div class="row hotpink-5 z-depth-3" style="border: #690505 solid; margin:8px; margin-top:40px;">
+    <div class="col s3 m3 l3" style="padding: 30px;">
+        <a href="/users/edit"><img src="<%= current_user.profile_img %>" class="z-depth-4" width= 100%; height=100%; style="border: #c5c5c5 solid; margin:8px;"></a>
+      </div>
+      <div class="col s6 m6 l6" style="padding-top: 40px; padding-bottom: 1em; font1size:1.2em; "> 
+      <table class="bordered" style="margin-left:5px;">
+        <tbody>
+          <tr>
+            <td>퀘스트 성공률</td>
+            <td><%=show_rate%></td>
+          </tr>
+          <tr>
+            <td>성공한 퀘스트 수</td>
+            <td><%=show_success%></td>
+          </tr>
+          <tr>
+            <td>실패한 퀘스트 수</td>
+            <td><%=show_fail%></td>
+          </tr>
+          <tr>
+            <td>주 카데고리</td>
+            <td><%=show_category%></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="col s3 m3 l3 center" style="margin-top:40px;">
+        <div class="coin" style="width:auto; height:150px"> </div>
+        <p><%=show_point%> 포인트</p>  
+      </div>
+    
+    </div>
+
+
+  <!--여기서부터 프로필 하위 부분-->
+  
+    <div class="row" style="height:70px;  padding-top:2em;">
+      <div class=" col s8 m8 l8" style="margin-top:20px;">
+          <form action="/my_page" class="left">
+           <input type="hidden" name="theme" value='전체'>
+           <a href="#" class="waves-effect waves-red btn " style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()" ><strong>전체</strong></a>
+          </form>
+          <form action="/my_page" class="left">
+           <input type="hidden" name="theme" value='정'>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>정</strong></a>
+          </form>
+          <form action="/my_page" class="left">
+           <input type="hidden" name="theme" value='모험'>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>모험</strong></a>
+          </form>  
+          <form action="/my_page" class="left">
+           <input type="hidden" name="theme" value='해커톤'>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>해커톤</strong></a>
+          </form>
+          <form action="/my_page" class="left">
+           <input type="hidden" name="theme" value='자기계발'>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>자기계발</strong></a>
+          </form>
+          <form action="/my_page"class="left">
+           <input type="hidden" name="theme" value='튜토리얼'>
+           <a href="#" class="waves-effect waves-red btn" style="background-color:#fffcf9; color:#690505" onclick="this.parentNode.submit()"><strong>튜토리얼</strong></a>
+          </form>
+      </div>
+       <form action="/my_page" class="col s4 m4 l4">
+          <div class="row">
+            <div class="input-field suffix">
+              <input id="icon_prefix" name="text" type="text" class="validate">
+              <label for="icon_prefix">미션 찾기</label>
+              <a href="#" onclick="this.parentNode.submit()"><i class="material-icons red-text">search</i></a>
+            </div>
+          </div>
+        </form>
+    </div>
+    
+  </div>
+    
+      <section class="grid-wrap">
+				<ul class="grid swipe-right" id="grid">
+					<li class="title-box">
+						<h2><a href="/posts?status=전체">퀘스트 게시판 바로가기</a></h2>
+					</li>
+					<% @userquest_select.each do |uq| %>
+					  <li><a href="#"><img center src=<%= uq.photoData %> alt="dummy"><h3><%= uq.quest.content %></h3></a></li>
+	        <% end %>
+				</ul>
+			</section>
+    
+  </div>
+
+    <link rel="stylesheet" type="text/css" href="<%= asset_path("normalize.css", type: :stylesheet, skip_pipeline: true) %>" />
+		<link rel="stylesheet" type="text/css" href="<%= asset_path("demo.css", type: :stylesheet, skip_pipeline: true) %>" />
+		<link rel="stylesheet" type="text/css" href="<%= asset_path("component.css", type: :stylesheet, skip_pipeline: true) %>" />
+		<script src="<%= asset_path("modernizr.custom.js", type: :javascript) %>"></script>
+	</head>
+	
+	<body>
+	  
+		<div class="container">
+			<section class="grid-wrap">
+				<ul class="grid swipe-right" id="grid">
+					<li class="title-box">
+						<h2>Illustrations by <a href="http://ryotakemasa.com/">Ryo Takemasa</a></h2>
+					</li>
+					<li><a href="#"><img src="/fail5.jpg" alt="dummy"><h3>A fantastic title</h3></a></li>
+				</ul>
+			</section>
+		
+		</div>
+		<!-- /container -->
+		<script src="<%= asset_path("masonry.pkgd.min.js", type: :javascript, skip_pipeline: true) %>"></script>
+		<script src="<%= asset_path("imagesloaded.pkgd.min.js", type: :javascript, skip_pipeline: true) %>"></script>
+		<script src="<%= asset_path("classie.js", type: :javascript, skip_pipeline: true) %>"></script>
+		<script src="<%= asset_path("colorfinder-1.1.js", type: :javascript, skip_pipeline: true) %>"></script>
+		<script src="<%= asset_path("gridScrollFx", type: :javascript, skip_pipeline: true) %>"></script>
+		
+		<script>
+			new GridScrollFx( document.getElementById( 'grid' ), {
+				viewportFactor : 0.4
+			} );
+		</script>
+	</body>
+    
+    

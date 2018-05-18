@@ -1,0 +1,260 @@
+<!--프로필 사이드바-->
+<style>
+  .countdown-timer-wrapper {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 20px;
+  max-width: 300px;
+  margin: 50px auto;
+}
+
+.countdown-timer-wrapper h5 {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-top: 10px;
+  text-shadow: none;
+}
+
+.countdown-timer-wrapper .timer {
+  padding: 10px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper {
+  display: inline-block;
+  width: 60px;
+  height: 50px;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .time {
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.countdown-timer-wrapper .timer .timer-wrapper .text {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+</style>
+
+
+<div id="test" class="row">
+  <div class="col s3 m3 l3">
+    <% if current_user == nil%>
+      <%show_user = "로그인을 해주세요"%>
+      <%show_rate = nil%>
+      <%show_success = nil%>
+      <%show_fail = nil%>
+      <%show_category = nil%> 
+      <%show_point =nil%>
+    <% else %>
+      <%show_user = current_user.nickname%>
+      <%show_rate =  ((@userquest_profile_success_size+@userquest_profile_fail_size/@quest_size)*100).to_s + "%" %>
+      <%show_success =   @userquest_profile_success_size%>
+      <%show_fail =  @userquest_profile_fail_size %>
+      <%show_category = @theme%>
+      <%show_point = "3700"%>
+    
+    <% end %>
+    <div class="z-depth-4 hotpink-5" style="margin-top: 50px; margin-left:20px; margin-right:20px;">
+      <ul class="collection with-header center">
+        <a class="collection-item" href="/my_page?theme=전체" style="color:#ffffff; background-color:#690505; letter-spacing:3px;"><%=show_user%><i class="material-icons">settings</i></a>
+        <li class="collection-header"><img src="<%= current_user.profile_img %>" style="border: #c5c5c5 solid; margin:8px;" width= 100%; height=100%;></li>
+        <li class="collection-item" style="letter-spacing:1.5px fontsize:5px;"><%=show_point%> P
+        
+        oint<i class="material-icons" style="color:#ffd700; margin-left:5px;">copyright</i></li>
+        <li class="collection-item" style="letter-spacing:1.5px">퀘스트 성공률 : <%=show_rate%></li>
+        <li class="collection-item" style="letter-spacing:1.5px">성공한 퀘스트 수 : <%=show_success%></li>
+        <li class="collection-item" style="letter-spacing:1.5px">실패한 퀘스트 수 : <%=show_fail%></li>
+        <li class="collection-item" style="letter-spacing:1.5px">주 카데고리 : <%=show_category%></li>
+        <a href="/credit" class="collection-item red-text text-darken-4 " style="padding:30px;">MADE BY<br><div class="center"><img style="height: 100px;" src="<%= asset_path ("likelion.png") , class: "circle"%>"></div></a>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col s8 m8 l8" >
+<!--카테고리-->
+
+    <% if !current_user.status %>
+    <div class="hotpink-5 z-depth-3" style="margin-top:50px; margin-bottom:50px; border: #690505 solid;">
+      <div class="center"><img style="margin: 20px;" src="<%= asset_path ("text_fin.png") %>"></div>
+    	<div class="carousel" >
+          <a class="carousel-item modal-trigger quest3 N/A transparent" href="#modal3">
+    			</a>
+          
+          <a class="carousel-item modal-trigger quest1 N/A transparent" href="#modal1">
+         </a>
+    	
+          <a class="carousel-item modal-trigger quest2 N/A transparent" href="#modal2">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest4 N/A transparent" href="#modal4">
+    			</a>
+    			
+          <a class="carousel-item modal-trigger quest5 N/A transparent" href="#modal5">
+    			</a>
+    	</div>
+  	</div>
+  	
+  	<div class= "hotpink-5 z-depth-3" style=" border: #690505 solid;">
+      <div class="center"><img style="height:80px;" src="<%= asset_path ("introduce.png") %>"></div>
+      <div class="carousel carousel-slider " data-indicators="true" >
+        <div class="carousel-item black-text" id="carousel_num1" href="#one!"><img src="/111.png"></div>
+        <div class="carousel-item black-text red" id="carousel_num2" href="#two!"><img src="/222.png"></div>
+      </div>
+    </div>
+  	
+  </div>
+    <% else %>
+    <div class="hotpink-5 z-depth-3" style="margin-top:50px; padding-bottom: 1.5em; margin-bottom:2em;">
+      <div class="center"><img style="margin-top:2em; height:13em;" src="<%= asset_path ("my_quest_fin.png")%>"></div>
+      <div class="countdown-timer-wrapper" style="background-color:#ee6e73; padding:1.5em; letter-spacing: 3px; border-radius:20px; border: solid white 4px;">
+        <div class="timer" id="countdown">
+          <div class="timer-wrapper">
+            <div id="hour" class="time">%H</div>
+            <span class="text">hrs</span>
+          </div>
+          <div class="timer-wrapper">
+            <div id="minute"class="time">%M</div>
+            <span class="text">mins</span>
+          </div>
+          <div class="timer-wrapper">
+            <div id="second"class="time">%S</div>
+            <span class="text">sec</span>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+      <div class= "hotpink-5 z-depth-3">
+        <div class="center"><img style="height:80px;" src="<%= asset_path ("introduce.png") %>"></div>
+        <div class="carousel carousel-slider " data-indicators="true" >
+          <div class="carousel-item black-text" id="carousel_num1" href="#one!"><img src="/111.png"></div>
+          <div class="carousel-item black-text red" id="carousel_num2" href="#two!"><img src="/222.png"></div>
+      </div>
+      
+      <script>
+      // Set the date we're counting down to
+       
+        var countDownDate = ((<%= @userquest.created_at.hour %> + 1) * 3600000) + (<%= @userquest.created_at.min %> * 60 * 1000 )
+        + (<%= @userquest.created_at.sec %> * 1000) + (<%= @userquest.quest.time %> * 3600000);
+        var timeset = new Date();
+     
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+  
+        // Get todays date and time
+        var now = new Date().getTime();
+       
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+        
+        // Time calculations for days, hours, minutes and seconds
+        //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000) + 8;
+        
+        timeset.setHours(hours, minutes, seconds);
+        var hour = timeset.getHours();
+        var minute = timeset.getMinutes();
+        var second = timeset.getSeconds();
+        
+        // Output the result in an element with id="demo"
+        document.getElementById("hour").innerHTML = hour;
+        document.getElementById("minute").innerHTML = minute;
+        document.getElementById("second").innerHTML = second;
+        
+        // If the count down is over, write some text 
+        if (distance > 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "FAIL";
+          }
+        }, 1000);
+      </script>
+    <% end %>
+    
+    
+
+  
+  
+</div>
+
+
+
+  
+<div id="modal3" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest3.content %></p>
+      <hr>
+      <p><%= @quest3.description %></p>
+      <hr>
+      <p><%= @quest3.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href = "/home/makeQuest_new/<%= @quest3.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest4.content %></p>
+      <hr>
+      <p><%= @quest4.description %></p>
+      <hr>
+      <p><%= @quest4.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest4.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+
+<div id="modal5" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest5.content %></p>
+      <hr>
+      <p><%= @quest5.description %></p>
+      <hr>
+      <p><%= @quest5.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest5.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+    </div>
+  <script>
+  	$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.carousel').carousel();
+    $('.modal').modal();
+    $('.spin').click(function(){
+			      
+			      $(this).transition({perspective: '10px',
+              rotateY: '720deg'});
+			    })
+  });
+  	
+  </script>
+    
+  </div>
+</div>
+
+
+<script>
+  function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 5000);
+}
+
+
+</script>
+

@@ -1,0 +1,47 @@
+
+
+<!--<form action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post" enctype="multipart/form-data">-->
+  
+<!--  <div class="file-field input-field center waves-red">-->
+<!--    <div class="waves-effect waves-red btn" style="background-color:#fa8072">-->
+<!--      <span>찾아보기</span>-->
+<!--      <input type="file" name="photoData" >-->
+<!--    </div>-->
+<!--    <div class="file-path-wrapper">-->
+<!--      <input class="file-path validate" type="text" placeholder="파일 업로드">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  <div class="row center" id="target">-->
+<!--      <a href="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" id="success">-->
+<!--        <input type="submit" class="waves-effect waves-light btn" value="제출하기"></a>-->
+<!--      <a href="/home/makeQuest_failed" class="btn red">포기하기</a>-->
+<!--  </div>-->
+<!--</form>-->
+
+<div class="center"style="margin: 100px;">
+<%= form_tag("/upload", method: "post", multipart: true) do %>
+  <div class="row">
+               <div class="file-field input-field">
+                  <div class="btn">
+                     <span>파일찾기</span>
+                     <input type="file" name="photoData" id="photoData">
+                  </div>
+                  <div class="file-path-wrapper">
+                     <input class="file-path validate" type="text" placeholder="Upload file">
+                  </div>
+               </div>
+            </div>
+  <input class="waves-effect waves-red btn hotpink-2" type="submit" name="commit" value="제출하기">
+<% end %>
+</div>
+<!-- 태그 -->
+<!--<form enctype="multipart/form-data" action="/upload" accept-charset="UTF-8" method="post">-->
+<!--  <input name="utf8" type="hidden" value="✓">-->
+<!--  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>-->
+<!--  <div class="waves-effect waves-red btn" style="background-color:#fa8072">-->
+<!--  <span>찾아보기</span>-->
+<!--  <input type="file" name="photoData" id="photoData">-->
+<!--  </div>-->
+<!--  <input type="submit" class="waves-effect waves-light btn" name="commit" value="제출하기">-->
+<!--  <a href="/home/makeQuest_failed" class="btn red">포기하기</a>-->
+<!--</form>-->

@@ -1,0 +1,25 @@
+
+
+  <div class= "col s12 m12 l12 hotpink-5 z-depth-3" style="border: #690505 solid; margin-top:100px">
+    <div class="center"><img style="height:auto;" src="<%= asset_path ("introduce.png") %>"></div>
+    <div class="carousel carousel-slider " data-indicators="true">
+      <div class="carousel-fixed-item center">
+      <a class="btn waves-effect white grey-text darken-text-2">발급받기</a>
+    </div>
+      <div class="carousel-item black-text" id="carousel_num1" href="#one!"></div>
+      <div class="carousel-item black-text red" id="carousel_num2" href="#two!"></div>
+      <div class="carousel-item black-text black" id="carousel_num3" href="#three!"></div>
+      <div class="carousel-item black-text blue" id="carousel_num4" href="#four!"></div>
+    </div>
+  </div>
+  
+  <script>
+  $(document).ready(function(){
+    $('#navbar').hide();
+    $('.carousel').carousel({fullWidth: true},{indicators: true});
+  })
+      function autoplay() {
+    $('.carousel').carousel('next');
+    setTimeout(autoplay, 5000);
+}
+  </script>

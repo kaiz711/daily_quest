@@ -1,0 +1,105 @@
+
+<div class="center"><img style="margin: 3em;" src="<%= asset_path ("community.png") %>"></div>
+
+<div class="row" style="margin-top:20px; maring-bottom:20px;">
+  <div class="col offset-m2 offset-l2 col m4 l4" style="margin-top:20px;">
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='전체'>
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">ALL</a>
+    </form>
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='진행중'>
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">RUNNING</a>
+    </form>
+    <form action="/posts" class="left">
+      <input type="hidden" name="status" value='완료'>
+      <a href="#" class="waves-effect waves-red btn" style="background-color:#fa8072" onclick="this.parentNode.submit()">COMPLETE</a>
+    </form>  
+  </div>
+  
+  
+    <form action="/posts">
+      <div class="input-field col s6 m2 l2">
+        <select name="search_option">
+          <option value="title">Choose your option</option>
+          <option value="title">Title</option>
+          <option value="user">User</option>
+        </select>
+      </div>
+  
+      <div class="col s6 m3 l3">
+        <div class="input-field suffix ">
+          <input id="icon_prefix" type="text" name="text" class="validate">
+          <label for="icon_prefix">미션 찾기</label>
+        </div>
+      </div>
+      <a href="#" onclick="this.parentNode.submit()"><i class="material-icons teal-text">search</i></a>
+    </form>
+  
+</div>
+
+
+<div class="row" >
+  <div class="offset-m1 offset-l1 col m10 l10">
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>Theme</th>
+          <th>Title</th>
+          <th>User</th>
+          <!--<th colspan="3"></th>-->
+        </tr>
+      </thead>
+    
+      <tbody>
+        
+        <% @posts.each do |post| %>
+          <% if @userquest.quest_id == post.quest_id %>
+          <tr>
+            <td>
+              <% if post.status == "1" %>
+                  <%= "완료" %>
+              <% else %>
+                  <%= "진행중" %>
+              <% end %>
+            </td>
+            <td><%= post.theme%></td>
+            <td class="collection"><%= link_to "#{post.title}", post, class: "collection-item N/A transparent black-text" %></td>
+            <td><%= post.user.nickname%></td>
+            <td><%= link_to btn('edit'), edit_post_path(post) if post.updatable_by? current_user %></td>
+            <td><%= link_to btn('delete'), post, method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %></td>
+          </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="btn offset-m9 offset-l9 col m1 l1" style="background-color:#fa8072; margin-top:30px;">
+    <%= paginate @posts %>
+    <%= link_to 'NEW POST', new_post_path, class: "white-text"%>
+  </div>
+</div>
+
+<script>
+  
+  $(document).ready(function() {
+    $('select').material_select();
+  });
+</script>
+
+<style>
+     /* label focus color */
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+</style>

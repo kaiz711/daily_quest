@@ -1,0 +1,70 @@
+<div class="container">
+
+  <% index = 0 %>
+  <form name="data" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
+
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <% @quest.needs.to_i.times do |list| %>
+      <input type="text" class="inputform" id="<%= index %>" name="array[]" placeholder = "<%= @quest.explain%>">
+      <p>
+      <input type="checkbox" class = "checkBox" id="chkBox<%= index %>" onclick="return false;" >
+      <label for="chkBox<%= index %>"></label>
+      </p>
+    <% index += 1 %>
+    <% end %>
+    <span id="counter">###</span>
+    <p>
+    <label for="textarea1">무엇을 느꼈나요?</label>
+    <textarea id="textarea1" class="materialize-textarea" name="feel"></textarea>
+    </p>
+          
+    <button class="btn waves-effect waves-light disabled" id ="completebutton" type="submit" name="action">완료하기
+      <i class="material-icons right">send</i>
+    </button>
+    <a href="/home/makeQuest_quest" class="btn red">포기하기</a>
+  
+  </form>
+  
+
+</div>
+
+
+<script>
+
+
+
+
+
+$(document).ready(function(){
+    checkednum = 0;
+    $('#counter').html('현재 ' + checkednum + ' 개 작성되었습니다');
+
+// input 안에 글자가 입력이 됐을 경우 체크박스를 체크하는 함수입니다.
+  $('.inputform').keyup(function(){
+    arrayindex = $(this).attr('id'); //번호
+    arrayContent = $(this).val(); //길이측정
+    arrayLength = arrayContent.length;
+
+  //글자수가 2글자 이상인 경우 체크
+    if(arrayLength > 1){
+       $('#chkBox' + arrayindex).prop("checked", true); //checkbox checked 처리
+       
+    }
+    else{
+        $('#chkBox' + arrayindex).prop("checked", false); //checkbox 헤제
+    }
+
+    //여기서부터 체크 수가 일정 수를 넘어가면 제출 버튼 활성화 코드입니다
+    checkednum = $(".checkBox:checked").length ;
+    $('#counter').html('현재 ' + checkednum + ' 개 작성되었습니다');
+
+    if(checkednum == <%=index %>){
+          $('#completebutton').removeClass("disabled");
+      }
+      else {
+        $('#completebutton').addClass("disabled");
+      }
+  })
+});
+
+</script>

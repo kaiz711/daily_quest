@@ -1,0 +1,58 @@
+
+<!--로고-->
+<div class="row center">
+  <img src="<%= asset_path '/DQ.logo_sign_up.png' %>" alt="logo" style="padding: 30px;">
+</div>
+
+<!--정보 입력창-->
+
+<div class="row">
+<%= form_for(resource, as: resource_name, class: "col s12 m12 l12"  ,url: registration_path(resource_name)) do |f| %>
+  <div class="row center" style= "font-size:2em;"><%= devise_error_messages!%></div>
+
+      <div class="field row center">
+        <i class="material-icons medium offset-m2 offset-l2 col s1 m1 l1">mail</i>
+        <div class="input-field offset-s2 col s8 m7 l7">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true %>
+        </div>
+      </div>
+      
+      <div class="field row center">
+        <i class="material-icons medium offset-m2 offset-l2 col s1 m1 l1">people</i>
+        <div class="input-field offset-s2 col s8 m7 l7">
+        <%= f.label :nickname %><br />
+        <%= f.text_field :nickname, autofocus: true %>
+        </div>
+      </div>
+      
+      <div class="field row center">
+        <i class="material-icons medium offset-m2 offset-l2 col s1 m1 l1">vpn_key</i>
+        <div class="input-field offset-s2 col s8 m7 l7">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "off" %>
+        </div>
+      </div>
+    
+      <div class="field row center">
+        <i class="material-icons medium offset-m2 offset-l2 col s1 m1 l1">vpn_key</i>
+        <div class="input-field offset-s2 col s8 m7 l7">
+        <%= f.label :password_confirmation %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+        </div>
+      </div>
+    
+      <div class="actions row center">
+        <%= f.submit "Sign up", class:"waves-effect waves-light btn yellow darken-3" %>
+        <div class="waves-effect waves-light btn yellow darken-3 ">
+          <a href="/users/sign_in" style="color:#ffffff">LOGIN</a>
+      </div>
+      </div>
+      
+
+<% end %>
+
+

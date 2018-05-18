@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="white z-depth-3">
+    <div class="input-field suffix offset-m8 offset-s6 offset-m8 col s6 m4 l4 right">
+
+  </div>  
+    <table class="striped">
+      <thead>
+        <tr>
+          <th>Theme</th>
+          <th>Title</th>
+          <th>User</th>
+          <th>Processing</th>
+          <!--<th colspan="3"></th>-->
+        </tr>
+      </thead>
+    
+      <tbody>
+        <% @userquest.each do |userquest| %>
+          <tr>
+            <td><%= userquest.quest.theme %></td>
+            <td><%= userquest.quest.content %></td>
+            <td> <% if userquest.user.nil? %>
+                    <p><%= "nil" %></p>
+                 <% else %>
+                    <%= userquest.user.nickname %>
+                 <% end %>    
+            </td>
+            <td><% if userquest.success == "0" %>
+                  <p><%= "실패" %></p>
+                <% elsif userquest.success == "1" %>
+                  <p><%= "성공" %></p>
+                <% else %>
+                  <p><%= "진행중" %></p>
+                <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

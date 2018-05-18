@@ -1,0 +1,23 @@
+<!--로고-->
+<div class="row center">
+  <img src="<%= asset_path '/DQ.logo_password.png'%>" style="padding: 30px;">
+</div>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="row col s12 m6 l6 input-field">
+    <i class="material-icons medium offset-m2 offset-l2 col s1 m1 l1">mail</i>
+    <div class="input-field offset-s2 col s8 m7 l7">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true %>
+    </div>
+  </div>
+
+  
+  <div class="actions row center">
+    <%= f.submit "Send me reset password instructions",class:"waves-effect waves-light btn yellow darken-3", style:"margin-bottom: 100px;"%>
+  </div>
+<% end %>
+
+

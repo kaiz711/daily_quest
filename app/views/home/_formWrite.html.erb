@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+   <span class="center offset-m8 col m4" id="counter">###</span>
+  </div>
+    <!-- 글자수 카운터 위치 -->
+
+  <form class="col s12" style="margin-bottom:4em;" action="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <div class="row">
+      <div class="input-field col s12 m12 l12">
+        <textarea id="content" class="materialize-textarea" name="writedata"></textarea>
+        <label for="content"><%=@quest.explain %></label>
+      </div>
+      <div class="input-field col s12 m12 l12">
+        <textarea id="textarea1" class="materialize-textarea" name ="feel"></textarea>
+        <label for="textarea1">무엇을 느꼈나요?</label>
+      </div>
+    </div>
+    <!--미션 내용 입력 창-->
+    <div class="center">
+      <button class="btn waves-effect waves-light disabled" id ="completebutton" type="submit" name="action">완료하기
+      <i class="material-icons right">send</i>
+      </button>
+      <!--<a href="/home/makeQuest_quest/<%= @userquest.id %>/<%= @user.id %>" id="success"><input type="submit" class="waves-effect waves-light btn disabled" id ="completebutton" value="제출하기"></a>-->
+      <a href="/home/makeQuest_failed" class="btn red">포기하기</a>
+    </div>
+  </form>
+    
+
+</div>
+
+
+<script>
+  $(function() {
+      $('#content').keyup(function (e){
+          var content = $(this).val();
+          // 글자수를 측정해서 보내줌
+          $(this).height(((content.split('\n').length + 1) * 1.5) + 'em');
+          $('#counter').html('현재 ' + content.length + ' 글자 입니다');
+          // 글자수에 따라 활성화 정보를 받음
+          var clenth = content.length;
+          if(clenth > <%= @quest.needs.to_i - 1 %>){
+              $('#completebutton').removeClass("disabled");
+          }
+          else {
+            $('#completebutton').addClass("disabled");
+          }
+
+      });
+      $('#content').keyup();
+  });
+
+
+
+
+
+
+</script>

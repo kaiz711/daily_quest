@@ -1,0 +1,208 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.marginb{
+    margin: 10px;
+}
+
+.mainpicture{
+    height: 300px;
+}
+// .timer{
+//       display: table;
+//       width: 100%;
+//       height: auto;
+//       padding: 100px 0;
+//       text-align: center;
+//       color: black;
+//       background: url("timer.jpg") no-repeat bottom center scroll;
+//       background-color: black;
+//       background-size: 100% 100%;
+// }
+.quest1{  //정
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("card_정.png") no-repeat bottom center scroll;
+      background-color: black;
+      background-size: 100% 100%;
+}
+.quest2{  //모험
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("card_모험.png") no-repeat bottom center scroll;
+      background-color: black;
+      background-size: 100% 100%;
+}
+.quest3{  //자기계발
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("card_자기계발.png") no-repeat bottom center scroll;
+      background-color: black;
+      background-size: 100% 100%;
+}
+.quest4{  //튜토리얼
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("card_튜토리얼.png") no-repeat bottom center scroll;
+      background-color: black;
+      background-size: 100% 100%;
+}
+.quest5{  //해커톤
+      display: table;
+      width: 100%;
+      height: auto;
+      padding: 100px 0;
+      text-align: center;
+      color: white;
+      background: url("card_해커톤.png") no-repeat bottom center scroll;
+      background-color: black;
+      background-size: 100% 100%;
+}
+
+.coin{
+  background: url("money_fin.png") no-repeat bottom center scroll;
+  background-size: 100% 100%;
+}
+
+@media only screen and (min-width:600px) {
+ .carousel .carousel-item{
+    width:300px;
+    height:300px;
+}
+}
+@media only screen and (max-width:599px) {
+ .carousel .carousel-item{
+    width:200px;
+    height:200px;
+}
+}
+
+
+#carousel_num1{
+
+      background: url("page_image0.JPG") no-repeat  center scroll;
+      background-size: 100% 100%;
+    
+}
+
+.card_image{
+     border-radius: 10px;
+}
+
+#carousel_num2{
+  
+    background: url("page_image0.JPG") no-repeat bottom center scroll;
+    background-size: 100% 100%;
+}
+
+@font-face {
+  font-family: 'NotoSans-Bold';    
+  src: url('/assets/NotoSans-Bold.ttf') format('truetype'),
+}
+@font-face {
+  font-family: 'AlexBrush';    
+  src: url('/assets/AlexBrush-Regular.ttf') format('truetype'),
+}
+@font-face {
+  font-family: 'NotoSansUI-Bold';    
+  src: url('/assets/NotoSans-BoldUI.ttf') format('truetype'),
+}
+@font-face {
+  font-family: 'Jeju';    
+  src: url('/assets/JejuMyeongjo.ttf') format('truetype'),
+}
+
+
+.input-field.suffix i {
+  position: absolute;
+  width: 3rem;
+  font-size: 2rem;
+  transition: color .2s;
+  top: 0px;
+  right: 0px;
+}
+
+.input-field.suffix i.active {
+  color: #26a69a;
+}
+
+.input-field.suffix input,
+.input-field.suffix textarea {
+  margin-right: 3rem;
+  width: 92%;
+  width: calc(100% - 3rem);
+}
+
+.input-field.suffix textarea {
+  padding-top: .8rem;
+}
+
+.input-field.suffix label {
+  margin-right: 3rem;
+}
+
+@media only screen and (max-width: 992px) {
+  .input-field.suffix input {
+    width: 86%;
+    width: calc(100% - 3rem);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .input-field.suffix input {
+    width: 80%;
+    width: calc(100% - 3rem);
+  }
+}
+
+
+*{
+  font-family: NotoSans-Bold;
+}
+
+// #carousel_num3{
+//     background-image: url("Wpage_image2.JPG");
+//     background-color: #cccccc;
+// }
+// #carousel_num4{
+//     background-image: url("page_image3.JPG");
+//     background-color: #cccccc;
+// }
+
+.hotpink-1{
+  background-color:#690505;
+}
+
+.hotpink-2{
+  background-color:#fa8072;
+}
+.hotpink-3{
+  background-color:#ffd3b6;
+}
+.hotpink-4{
+  background-color:#fff5ee;
+}
+.hotpink-5{
+  background-color:#ffffff;
+}
+
+
+

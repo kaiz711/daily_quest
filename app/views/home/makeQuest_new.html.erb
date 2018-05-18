@@ -1,0 +1,201 @@
+<!--로고-->
+
+<!--카테고리-->
+<div class= "container">
+  <div class="row center" style="margin-top: 100px;">
+  	<h3>퀘스트 생성</h3>
+  </div>
+  <div class="row ">
+  	<p class="center">다섯가지 퀘스트 중 마음에 드는 한 가지를 결정해 주세요!</p>
+  </div>
+	<div class="carousel" style ="margin-bottom: 100px;">
+      <a class="carousel-item modal-trigger quest1 N/A transparent" href="#modal1">
+     </a>
+	
+      <a class="carousel-item modal-trigger quest2 N/A transparent" href="#modal2">
+			</a>
+
+
+      <a class="carousel-item modal-trigger quest3 N/A transparent" href="#modal3">
+			</a>
+			
+      <a class="carousel-item modal-trigger quest4 N/A transparent" href="#modal4">
+			</a>
+			
+      <a class="carousel-item modal-trigger quest5 N/A transparent" href="#modal5">
+			</a>
+		</div>
+	</form>	
+</div>
+	
+<!--<div>-->
+<!--	<form>-->
+<!--		<div class="row">-->
+<!--			<div class="offset-m2 col m2">-->
+<!--	      <a class="modal-trigger" href="#modal1">-->
+<!--		      <div class="card quest1 N/A transparent card_image z-depth-5">-->
+<!--					</div>-->
+<!--				</a>-->
+<!--			</div>-->
+		
+<!--			<div class="offset-m1 col m2 offset-m1">-->
+<!--		      <a class="modal-trigger" href="#modal2">-->
+<!--		      <div class="card quest2 N/A transparent card_image z-depth-5">-->
+<!--					</div>-->
+<!--					</a>-->
+<!--			</div>-->
+	
+		
+<!--			<div class="offset-m1 col m2 ">-->
+<!--		      <a class="modal-trigger" href="#modal3">-->
+<!--		      <div class="card quest3 N/A transparent card_image z-depth-5">-->
+<!--					</div>-->
+<!--					</a>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--		<div class="row">-->
+<!--			<div class="offset-m3 col m2">-->
+<!--		      <a class="modal-trigger" href="#modal4">-->
+<!--		      <div class="card quest4 N/A transparent card_image z-depth-5">-->
+<!--					</div>-->
+<!--					</a>-->
+<!--			</div>	-->
+<!--					<div class="offset-m2 col m2">-->
+<!--		      <a class="modal-trigger" href="#modal5">-->
+<!--		      <div class="card quest5 N/A transparent card_image z-depth-5">-->
+<!--					</div>-->
+<!--					</a>-->
+<!--			</div>-->
+			
+<!--		</div>		-->
+
+
+<!--발급받기 버튼-->
+	<!--<div class="row center">-->
+	<!--	<button class="btn waves-effect waves-light grey darken-2" type="submit" name="action">-->
+	<!--		발급받기 <i class="material-icons right">event_available</i>-->
+	<!--	</button>-->
+	<!--</div>-->
+
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest1.content %></p>
+      <hr>
+      <p><%= @quest1.description %></p>
+      <hr>
+      <p><%= @quest1.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href = "/home/makeQuest_new/<%= @quest1.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal2" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest2.content %></p>
+      <hr>
+      <p><%= @quest2.description %></p>
+      <hr>
+      <p><%= @quest2.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+       <a href = "/home/makeQuest_new/<%= @quest2.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+       <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal3" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest3.content %></p>
+      <hr>
+      <p><%= @quest3.description %></p>
+      <hr>
+      <p><%= @quest3.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href = "/home/makeQuest_new/<%= @quest3.id %>/<%= @user.id %>"  class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+<div id="modal4" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest4.content %></p>
+      <hr>
+      <p><%= @quest4.description %></p>
+      <hr>
+      <p><%= @quest4.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest4.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+
+
+<div id="modal5" class="modal">
+    <div class="modal-content">
+      
+      <p><%= @quest5.content %></p>
+      <hr>
+      <p><%= @quest5.description %></p>
+      <hr>
+      <p><%= @quest5.howTo.gsub("\n", "<br>").html_safe %></p>
+    </div>
+    <div class="modal-footer">
+      <a href="/home/makeQuest_new/<%= @quest5.id %>/<%= @user.id %>" class="modal-action waves-effect waves-green btn-flat">확인</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">닫기</a>
+    </div>
+</div>
+  
+  <script>
+  	$(document).ready(function(){
+    // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
+    $('.carousel').carousel();
+    $('.modal').modal();
+    $('.spin').click(function(){
+			      
+			      $(this).transition({perspective: '10px',
+              rotateY: '720deg'});
+			    })
+  });
+  	
+  </script>
+
+<div class="container">
+  <div class="center">
+    <table class="striped" style="margin-bottom: 4em;">
+      <thead>
+        <p style="padding-bottom: 1.5em;">Daily Quest에서는 총 5가지 테마의 미션을 고를 수 있습니다.</p>
+      </thead>
+      <tbody>
+         <tr>
+          <td class="col">Friendship</td>
+          <td>주위 사람들과 사랑을 나눠보세요!</td>
+        </tr>
+         <tr>
+          <td>Adventure</td>
+          <td>한번쯤 해보고 싶었던, 그러나 하지 않았던 것들</td>
+        </tr>
+        <tr>
+          <td>Improvement</td>
+          <td>가끔씩은 스스로를 가꿔 보는 것도 나쁘지 않아요</td>
+        </tr>
+        <tr>
+          <td>Tutorial</td>
+          <td>데일리 퀘스트의 기본적인 사용법을 익힙니다</td>
+        </tr>
+        <tr>
+          <td>Hackathon</td>
+          <td>멋쟁이 사자처럼 해커톤 전용 콘텐츠! 해커톤에서도 즐길 수 있는 퀘스트 들입니다!</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

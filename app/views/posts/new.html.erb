@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="center" style="margin-top:25px; margin-bottom:25px;"><img style="margin: 20px;" src="<%= asset_path ("newpost.png") %>"></div>
+  
+  <%= render 'form'%>
+  
+  <div class="right ">
+  <%= link_to posts_path(status: "전체") ,style:"color:white;" do %>
+  <i class="large material-icons">arrow_back</i>
+  <% end %>
+  </div>
+</div>
+

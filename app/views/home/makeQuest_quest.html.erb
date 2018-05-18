@@ -1,0 +1,101 @@
+
+<!--로고-->
+<div class="container">
+    <div class="center"><img style="margin: 4em; margin-bottom:2em;" src="<%= asset_path ("my_quest_fin.png") %>"></div>
+
+  <!--타이머-->
+  <div class="center row">
+    
+    <div class="timer offset-m3 col m6">
+    <div class="card grey darken-2 white-text" style="padding-top:1.5em; padding-bottom:1.5em; letter-spacing: 3px; border-radius:20px; border: solid white 2px;"><h1 id="demo"></h1></div>
+    </div>
+    <script>
+    // Set the date we're counting down to
+     
+      var countDownDate = ((<%= @userquest.created_at.hour %> + 1) * 3600000) + (<%= @userquest.created_at.min %> * 60 * 1000 )
+      + (<%= @userquest.created_at.sec %> * 1000) + (<%= @userquest.quest.time %> * 3600000);
+      var timeset = new Date();
+   
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+      // Get todays date and time
+      var now = new Date().getTime();
+     
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
+      
+      // Time calculations for days, hours, minutes and seconds
+      //var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)) + 1;
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000) + 8;
+      
+      timeset.setHours(hours, minutes, seconds);
+      var hour = timeset.getHours();
+      var minute = timeset.getMinutes();
+      var second = timeset.getSeconds();
+      
+      // Output the result in an element with id="demo"
+      document.getElementById("demo").innerHTML = hour + "h "
+      + minute + "m " + second + "s ";
+      
+      // If the count down is over, write some text 
+      if (distance > 0) {
+          clearInterval(x);
+          document.getElementById("demo").innerHTML = "FAIL";
+        }
+      }, 1000);
+      
+    </script>
+  </div>
+  
+<!--퀘스트 설명창-->
+  <div class=" row">
+    <div class="card white offset-m1 col m10">
+      <div class="card-content blue-grey-text text-darken-4" style="padding:3em;">
+        <div class="row">
+          <div class="offset-m1 col m2 hotpink-3 center" style="border-radius:20px;padding:0.5em;"><strong ><%= @userquest.quest.theme %></strong></div>
+          <div class="offset-m1 col m7" style="border-bottom:solid #ffd3b6 2px;padding:0.5em; margin-bottom:1em;"><strong class="center"><%= @userquest.quest.content %></strong></div>
+        </div>
+        <div class="row">
+          <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px;"><strong>퀘스트 설명</strong></div>
+          <div class="offset-m1 col m8" style="padding:0.5em; margin-bottom:1em;"><strong><%= @userquest.quest.description %></strong></div>
+          <div class="offset-m1 col m2 center" style="padding:0.5em; border-radius:20px; border:solid #ffd3b6 2px; margin-top:1em;"><strong>퀘스트 달성방법</strong></div>
+          <div class="offset-m1 col m8" style="padding:0.5em;"><strong><%= @userquest.quest.howTo.gsub("\n", "<br>").html_safe%></strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
+  
+<!--퀘스트 완료 방법을 측정합니다-->
+<!--사진으로 완료하는 퀘스트-->
+<% if @questCondition == "Photo" %>
+<!--퀘스트 파일 업로드-->
+<%= render 'formPhoto' %>
+<!--단어 나열로 완료하는 퀘스트-->
+<% elsif @quest.condition == "Array" %>
+  <%= render 'formArray' %>
+<!--글쓰기로 완료하거나, 확인할 수 없는 경우(오류)  -->
+<% else %>
+  <%= render 'formWrite' %>
+  <!--_formWrite.html.erb 를 표시합니다-->
+<% end %>
+</div>
+
+<style>
+     /* label focus color */
+    .input-field input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input-field input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+</style>

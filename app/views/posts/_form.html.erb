@@ -1,0 +1,62 @@
+
+  <%= form_for(@post) do |f| %>
+    <% if @post.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+  
+        <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <input type="hidden" name="quest_id" value="<%= @userquest.quest.id %>" />
+    <input type="hidden" name="status" value="<%= @userquest.success %>" />
+    <input type="hidden" name="theme" value="<%= @userquest.quest.theme %>" />
+    <div class="field">
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :content %><br>
+      <%= f.text_area :content ,style: "min-height: 300px;"%>
+    </div>
+    <!--<div class="row">-->
+    <!--  <p>-->
+    <!--    <input class="with-gap" name="theme" type="radio" id="test1" value="정"  />-->
+    <!--    <label for="test1">정</label>-->
+        
+    <!--    <input class="with-gap" name="theme" type="radio" id="test2" value="모험"  />-->
+    <!--    <label for="test2">모험</label>-->
+        
+    <!--    <input class="with-gap" name="theme" type="radio" id="test3" value="해커톤"  />-->
+    <!--    <label for="test3">해커톤</label>-->
+        
+    <!--    <input class="with-gap" name="theme" type="radio" id="test4" value="튜토리얼"  />-->
+    <!--    <label for="test4">튜토리얼</label>-->
+        
+    <!--    <input class="with-gap" name="theme" type="radio" id="test5" value="자기계발"  />-->
+    <!--    <label for="test5">자기계발</label>-->
+    <!--  </p>-->
+        
+    <!--</div>-->
+    <div class="actions waves-effect waves-light btn " style="margin=10px; background-color:#fa8072; margin-top:25px;">
+      <%= f.submit  %>
+    </div>
+  <% end %>
+  
+
+<style>
+     /* label focus color */
+    .input[type=text]:focus + label, .materialize-textarea:focus:not([readonly]) + label {
+     color: red !important;
+    }
+
+/* label underline focus color */
+    .input[type=text]:focus, .materialize-textarea:focus:not([readonly]) {
+     border-bottom: 1px solid red !important;
+     box-shadow: 0 1px 0 0 red !important;
+    }
+</style>
